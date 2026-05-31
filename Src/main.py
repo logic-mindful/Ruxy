@@ -1,12 +1,12 @@
 import discord
 from discord import app_commands
-
 from config import TOKEN
 
 from commands import utility
 from commands import user
 from commands import github
 from commands import owner
+from commands import moderation
 
 
 class Client(discord.Client):
@@ -52,5 +52,6 @@ utility.setup(tree, client)
 user.setup(tree, client)
 github.setup(tree, client)
 owner.setup(tree, client)
+moderation.setup(tree, client)
 
 client.run(TOKEN)

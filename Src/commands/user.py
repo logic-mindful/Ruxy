@@ -1,5 +1,5 @@
 import discord
-
+import blacklist
 
 def setup(tree, client):
     @tree.command(
@@ -7,6 +7,9 @@ def setup(tree, client):
         description="Replies with information about you"
     )
     async def whoami(interaction: discord.Interaction):
+        if blacklist.is_blacklisted(interaction.user.id):
+            await interaction.response.send_message("You are blacklisted")
+            return
         user = interaction.user
 
         color = (
@@ -64,6 +67,9 @@ def setup(tree, client):
         interaction: discord.Interaction,
         user: discord.Member
     ):
+        if blacklist.is_blacklisted(interaction.user.id):
+            await interaction.response.send_message("You are blacklisted")
+            return
         embed = discord.Embed(
             title=f"{user.display_name}'s Profile",
             color=user.top_role.color
