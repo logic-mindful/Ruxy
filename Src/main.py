@@ -7,7 +7,7 @@ from commands import user
 from commands import github
 from commands import owner
 from commands import moderation
-
+from commands import fun
 
 class Client(discord.Client):
     def __init__(self, *args, **kwargs):
@@ -35,7 +35,7 @@ class Client(discord.Client):
                     print(
                         f"Failed to sync to guild "
                         f"{guild.name}: {e}"
-                    )
+                    ) 
 
             self.synced = True
 
@@ -53,5 +53,6 @@ user.setup(tree, client)
 github.setup(tree, client)
 owner.setup(tree, client)
 moderation.setup(tree, client)
+fun.setup(tree, client)
 
 client.run(TOKEN)
